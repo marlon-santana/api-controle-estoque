@@ -16,7 +16,7 @@ app.use(express.json());
 //   res.json(cadastrosClientes);
 // });
 
-// Rota para obter todos os cadastros de clientes
+
 app.post('/clientes', async (req, res) => {
 
     const client = await connect();
