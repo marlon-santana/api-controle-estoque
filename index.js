@@ -16,6 +16,18 @@ app.use(express.json());
 //   res.json(cadastrosClientes);
 // });
 
+app.get('/clientes', async (req, res) => {
+    try {
+      const client = await connect();
+      const db = client.db('clientes');
+      const collection = db.collection('clientes');
+      const allClientes = await collection.find({}).toArray();
+      res.json(allClientes);
+    } catch (err) {
+      console.error('Erro ao buscar clientes', err);
+      res.status(500).json({ error: 'Erro interno ao buscar clientes' });
+    }
+  });
 
 app.post('/clientes', async (req, res) => {
 
